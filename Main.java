@@ -1,70 +1,118 @@
-import java.security.PublicKey;
+class Person {
+    // encapsulation
+    private String name;
+    private int age;
 
-public class Main {
+    
+    //constructor
+    public Person(String name, int age){
 
-    //global variables
-    String name;
-    int age;
-
-    // constructor
-    public Main(String name, int age) {
         this.name = name;
         this.age = age;
     }
 
-    public static void main(String[] args) {
-
-        System.out.println("Enter your name: ");
-        String name = System.console().readLine();
-
-        System.out.println("Enter your age: ");
-        int age = Integer.parseInt(System.console().readLine());
-
-        Main main = new Main(name, age);
-        main.printmenu();
-
+    //getter and setter methods for encapsulation
+    public String getName(){
+        return name;
     }
 
-    public void printmenu(){
+    public void setName(String name){
+        this.name = name;
+    }
 
-        boolean working = true;
-        while (working) {
-            System.out.println("Menu");
-            System.out.println("1. Print Name");
-            System.out.println("2. Print Age");
-            System.out.println("3. Exit");
-            int choice = Integer.parseInt(System.console().readLine());
+    public int age(){
+        return age;
+    }
 
-            if(working){
-                switch (choice) {
-                    case 1:
-                        printname();
-                        break;
-                    case 2:
-                        printage();
-                        break;
-                    case 3:
-                        working = false;
-                        break;
-                    default:
-                        System.out.println("Invalid choice");
-                        break;
-                }
+    public void getAge(int age){
+        this.age = age;
+    }
 
-            }
+    //method for printing whole details
+    public void printDetails(){
+        System.out.println("Name: " + name + " \nAge: " + age + "\n");
+    }
+}
+
+    // INHERITANCE: Students is a subclass of a person
+    class Student extends Person{
+        private String studentId;
+
+        public Student(String name, int age, String studentId){
+            super(name, age); //calling the constructor
+            this.studentId = studentId;
         }
 
+        public String getStudentID(){
+            return studentId;
+        }
+        public void setStudentId(String studentId){
+            this.studentId = studentId;
+        }
+
+        @Override
+        public void printDetails(){
+            super.printDetails(); //calling the supercalss method
+            System.out.println("Student ID: " + studentId);
+        }
     }
 
+    //abstraction: using abstract class
+    abstract class Employee extends Person{
+        private String employeeId;
 
-    public void printname(){
-        System.out.println("Name: " + name);
+        public Employee(String name, int age, String employeeId){
+            super(name, age);
+            this.employeeId = employeeId;
+        }
+
+        public String getEmployeeId(){
+            return employeeId;
+        }
+
+        public void setEmployeeId(String employeeId){
+            this.employeeId = employeeId;
+        }
+
+        //Abstract Method
+        public abstract void work();
     }
 
-    public void printage(){
-        System.out.println("Age: " + age);
+    
+    //Concrete class extending abstract class 
+    class Developer extends Employee{
+
+        public Developer(String name, int age, String employeeId){
+            super(name, age, employeeId);
+        }
+
+        @Override
+        public void work(){
+            System.out.println("Developer is coding");
+        }
+
+
+
+    public static void main(String[] args) {
+
+        String name[] = {"Rhenz", "Hyacinth", "Abi"};
+        int age[] = {20, 19, 19};
+        String id[] = {"A123456", "A123457", "A1234568"};
+
+
+        //Person object
+        Person person = new Person(name[0], age[0]);
+        person.printDetails();
+
+
+        //Student object
+        Student student = new Student(name[1], age[1], id[1]);
+        student.printDetails();
+
+        //Developer object
+        Developer developer = new Developer(name[2], age[2], id[2]);
+        developer.printDetails();
+        developer.work();
+
     }
-
-
-
 }
