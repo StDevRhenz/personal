@@ -1,3 +1,4 @@
+package LearnThings;
 class Person {
     // encapsulation
     private String name;
