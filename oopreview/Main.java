@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 
 // Abstract class for all Physics concepts
 abstract class PhysicsConcept {
-    abstract void explain();
+    abstract void explain(); // Abstraction: Abstract method to be implemented by subclasses
 }
 
 // Temperature Conversion Class
@@ -23,44 +23,44 @@ class Temperature {
 }
 
 // Class for Equilibrium Calculation
-class Equilibrium extends PhysicsConcept {
-    private double force1, force2;
-    
-    public Equilibrium(double f1, double f2) {
+class Equilibrium extends PhysicsConcept { // Inheritance: Extending the abstract class PhysicsConcept
+    private double force1, force2; // Encapsulation: Private fields
+
+    public Equilibrium(double f1, double f2) { // Constructor
         this.force1 = f1;
         this.force2 = f2;
     }
-    
+
     public double calculateResultantForce() {
         return Math.abs(force1 - force2); // Simple force balance
     }
-    
+
     @Override
-    void explain() {
+    void explain() { // Polymorphism: Overriding the abstract method
         System.out.println("Equilibrium: When all forces are balanced, the net force is zero.");
     }
 }
 
 // Class for Work done by Gas Expansion
-class GasLaw extends PhysicsConcept {
+class GasLaw extends PhysicsConcept { // Inheritance: Extending the abstract class PhysicsConcept
     public static double calculateWork(double pressure, double volume1, double volume2) {
         return pressure * (volume2 - volume1);
     }
-    
+
     @Override
-    void explain() {
+    void explain() { // Polymorphism: Overriding the abstract method
         System.out.println("Gas Laws: Work done by gas = Pressure * Change in Volume.");
     }
 }
 
 // Class for Vector Physics
-class VectorPhysics extends PhysicsConcept {
+class VectorPhysics extends PhysicsConcept { // Inheritance: Extending the abstract class PhysicsConcept
     public static double calculateResultant(double f1, double f2, double angle) {
         return Math.sqrt(f1*f1 + f2*f2 + 2*f1*f2*Math.cos(Math.toRadians(angle)));
     }
-    
+
     @Override
-    void explain() {
+    void explain() { // Polymorphism: Overriding the abstract method
         System.out.println("Vector Physics: Uses trigonometry to find resultant forces.");
     }
 }
@@ -113,18 +113,18 @@ class PhysicsReview {
         System.out.println("0°C to Kelvin: " + Temperature.celsiusToKelvin(0) + "K\n");
 
         // Equilibrium Example
-        Equilibrium eq = new Equilibrium(50, 30);
-        eq.explain();
+        Equilibrium eq = new Equilibrium(50, 30); // Creating an instance of Equilibrium
+        eq.explain(); // Polymorphism: Calling the overridden method
         System.out.println("Resultant Force: " + eq.calculateResultantForce() + " N\n");
-        
+
         // Work done by Gas Expansion
-        GasLaw gas = new GasLaw();
-        gas.explain();
+        GasLaw gas = new GasLaw(); // Creating an instance of GasLaw
+        gas.explain(); // Polymorphism: Calling the overridden method
         System.out.println("Work Done by Gas: " + GasLaw.calculateWork(100, 2, 5) + " J\n");
-        
+
         // Vector Calculation
-        VectorPhysics vector = new VectorPhysics();
-        vector.explain();
+        VectorPhysics vector = new VectorPhysics(); // Creating an instance of VectorPhysics
+        vector.explain(); // Polymorphism: Calling the overridden method
         System.out.println("Resultant of two forces (50N and 30N at 60°): " + VectorPhysics.calculateResultant(50, 30, 60) + " N\n");
     }
 }
@@ -142,12 +142,12 @@ public class Main {
 
         switch (choice) {
             case 1:
-                SimpleCalculator calculator = new SimpleCalculator();
-                calculator.startCalculator();
+                SimpleCalculator calculator = new SimpleCalculator(); // Creating an instance of SimpleCalculator
+                calculator.startCalculator(); // Using the SimpleCalculator instance
                 break;
             case 2:
-                PhysicsReview physicsReview = new PhysicsReview();
-                physicsReview.review();
+                PhysicsReview physicsReview = new PhysicsReview(); // Creating an instance of PhysicsReview
+                physicsReview.review(); // Using the PhysicsReview instance
                 break;
             default:
                 System.out.println("Invalid choice");
